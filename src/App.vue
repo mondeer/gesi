@@ -1,89 +1,43 @@
 <template>
     <div class="page-container">
-        <md-app class="app">
-            <md-app-toolbar class="md-primary md-dense" md-elevation="3">
-                <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
-                    <md-icon>menu</md-icon>
-                </md-button>
-                <span class="md-title">GESI</span>
-                
-                <div class="md-toolbar-section-end">
-                    <md-button class="md-icon-button md-flat" @click="getCompte">
-                        <md-avatar>
-                            <img src="~@/assets/man.png" alt="Avatar" class="md-small">
-                        </md-avatar>
-                    </md-button>
+        <nav class="tete"  id="tete">
+            <div class="nav-wrapper">
+                <span class="brand"></span>
+                <a href="#" class="waves-effect waves-teal btn-flat right"><i class="material-icons right tiny">add</i></a>
 
-                    <md-button class="md-icon-button">
-                        <md-icon>minimize</md-icon>
-                    </md-button>
-                    <md-button class="md-icon-button">
-                        <md-icon>clear</md-icon>
-                    </md-button>
-                </div>
-            </md-app-toolbar>
+            </div>
+        </nav>
+        <div class="side1" id="side1">
+            <div @click="makeBorder" class="center "><a class=" center waves-effect waves-teal btn-flat"><i class="center material-icons right medium">delete</i></a></div>
+            <div @click="makeBorder"><a class="waves-effect waves-teal btn-flat"><i class="material-icons right medium">add</i></a></div>
+            <div @click="makeBorder"><a class="waves-effect waves-teal btn-flat"><i class="material-icons right medium">description</i></a></div>
+            <div @click="makeBorder"><a class="waves-effect waves-teal btn-flat"><i class="material-icons right medium">data_usage</i></a></div>
+        </div>
+        <div class="side2" id="side2">
+            <ul>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Clients</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
 
-            <md-app-drawer :md-active.sync="menuVisible" md-persistent="mini" class="drawer md-small">
-                <md-toolbar class="md-transparent md-dense" md-elevation="0">
-                    <span>Navigation</span>
+        </div>
 
-                    <div class="md-toolbar-section-end">
-                        <md-button class="md-icon-button md-dense" @click="toggleMenu">
-                            <md-icon>keyboard_arrow_left</md-icon>
-                        </md-button>
-                    </div>
-                </md-toolbar>
-
-                <md-list>
-                    <md-list-item @click="changeContent('MenuEtudiants')">
-                        <md-icon>send</md-icon>
-                        <span class="md-list-item-text">Etudiants</span>
-                    </md-list-item>
-
-                    <md-list-item @click="changeContent('MenuProfs')">
-                        <md-icon>send</md-icon>
-                        <span class="md-list-item-text">Professeurs</span>
-                    </md-list-item>
-
-                    <md-list-item @click="changeContent('MenuCours')">
-                        <md-icon>delete</md-icon>
-                        <span class="md-list-item-text">Cours</span>
-                    </md-list-item>
-
-                    <md-list-item @click="changeContent('MenuGestion')">
-                        <md-icon>error</md-icon>
-                        <span class="md-list-item-text">Gestion</span>
-                    </md-list-item>
-                </md-list>
-            </md-app-drawer>
-
-            <md-app-content>
-                <keep-alive>
-                    <component v-bind:is="makeContent()"></component>
-                </keep-alive>
-            </md-app-content>
-        </md-app>
+        <div class="content">
+        </div>
+        <nav class="footer"></nav>
     </div>
 </template>
 
 <script>
-    import MenuCours from './components/MenuCours.vue'
-    import MenuEtudiants from './components/MenuEtudiants.vue'
-    import MenuProfs from './components/MenuProfs.vue'
-    import MenuGestion from './components/MenuGestion.vue'
-
     export default {
         name: 'App',
-        components: {
-            MenuProfs,
-            MenuEtudiants,
-            MenuCours,
-            MenuGestion
-        },
         data: function () {
             return {
                 menuVisible: false,
-                content: "MenuEtudiants"
+                content: "MenuEtudiants",
+                lastTarget: null,
+                currentTarget: ""
             }
         },
         methods: {
@@ -98,17 +52,90 @@
             },
             makeContent() {
                 return this.content;
+            },
+            makeBorder(event) {
+                if (this.lastTarget != this.currentTarget && this.lastTarget != null && this.currentTarget != null) {
+                    this.lastTarget.classList.remove("borderYell");
+                    event.target.classList.add("borderYell");
+                    this.lastTarget = event.target;
+                } else {
+                    this.lastTarget = event.target;
+                    this.currentTarget = event.target;
+                }
             }
         }
     }
 </script>
 
 <style lang="css" scoped>
-    .drawer {
-        widows: 100px;
+    .page-container {
+        max-height: 728px;
+        overflow-y: hidden;
     }
-
-    .app {
-        height: 725px;
+    .footer {
+        height: 28px;
+        background-color: brown;
+    }
+    .borderYell {
+        border-left-color: #ffff00;
+        border-left-width: 2px;
+        border-left-style: solid;
+    }
+    .brand {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50px;
+        height: 100%;
+        background-color: yellow;
+    }
+    .tete {
+        height: 35px;
+        background-color: white;
+        box-shadow: none;
+        color: black;
+    }
+    .tete li a {
+        position: relative;
+        height: 100% !important;
+    }
+    .side1 {
+        height: 100%;
+        width: 50px;
+        position: absolute;
+        z-index: 1;
+        top: 35px;
+        left: 0;
+        background-color: #02457A;
+        overflow-x: hidden;
+        padding-top: 60px;
+        transition: 0.5s;
+    }
+    .side1 a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: white;
+        display: block;
+        transition: 0.3s;
+    }
+    .side1 a:hover {
+        color: #f1f1f1;
+    }
+    .side2 {
+        height: 100%;
+        width: 200px;
+        position: absolute;
+        z-index: 1;
+        top: 35px;
+        left: 50px;
+        background-color: #001B48;
+        overflow-x: hidden;
+        transition: 0.5s;
+    }
+    .content {
+        transition: margin-left .5s;
+        height: 700px;
+        background-color: #D6E8EE;
     }
 </style>

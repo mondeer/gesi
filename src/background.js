@@ -57,6 +57,7 @@ app.on('ready', async () => {
         await installVueDevtools()
     }
     const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
+    console.log("width:"+width+", height: "+height);
     createWindow(width,height)
 })
 
