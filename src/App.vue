@@ -1,67 +1,80 @@
 <template>
     <div class="page-container">
-        <nav class="tete"  id="tete">
+        <nav class="tete" id="tete">
             <div class="nav-wrapper">
-                <span class="brand"></span>
-                <a href="#" class="waves-effect waves-teal btn-flat right"><i class="material-icons right tiny">add</i></a>
-
+                <span class="brand"><i class="material-icons right tiny">add</i></span>
+                <a class="waves-effect waves-teal btn-flat right"><i class="material-icons right tiny">add</i></a>
             </div>
         </nav>
         <div class="side1" id="side1">
-            <div @click="makeBorder" class="center "><a class=" center waves-effect waves-teal btn-flat"><i class="center material-icons right medium">delete</i></a></div>
-            <div @click="makeBorder"><a class="waves-effect waves-teal btn-flat"><i class="material-icons right medium">add</i></a></div>
-            <div @click="makeBorder"><a class="waves-effect waves-teal btn-flat"><i class="material-icons right medium">description</i></a></div>
-            <div @click="makeBorder"><a class="waves-effect waves-teal btn-flat"><i class="material-icons right medium">data_usage</i></a></div>
+            <ul>
+                <li @click="clickside1('side2etudiants',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">supervisor_account</i></a></li>
+                <li @click="clickside1('side2professeurs',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">person</i></a></li>
+                <li @click="clickside1('side2cours',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">library_books</i></a></li>
+                <li @click="clickside1('side2gestion',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">assignment</i></a></li>
+            </ul>
         </div>
         <div class="side2" id="side2">
-            <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Clients</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-
+            <keep-alive>
+                <component v-bind:is="setcontentside2()"></component>
+            </keep-alive>
         </div>
 
         <div class="content">
+            <keep-alive>
+                <component v-bind:is="makeContent()"></component>
+            </keep-alive>
         </div>
         <nav class="footer"></nav>
     </div>
 </template>
 
 <script>
+    import side2etudiants from "./components/side2/side2Etudiants.vue"
+    import side2professeurs from "./components/side2/side2Professeurs.vue"
+    import side2cours from "./components/side2/side2Cours.vue"
+    import side2gestion from "./components/side2/side2Gestion.vue"
+
     export default {
         name: 'App',
+        components: {
+            side2cours,
+            side2etudiants,
+            side2gestion,
+            side2professeurs
+        },
         data: function () {
             return {
                 menuVisible: false,
-                content: "MenuEtudiants",
+                maincontent: "",
                 lastTarget: null,
-                currentTarget: ""
+                currentTarget: "",
+                contentside2: "side2etudiants"
+
             }
         },
         methods: {
-            toggleMenu() {
-                this.menuVisible = !this.menuVisible
-            },
-            getCompte() {
-
+            setcontentside2() {
+                return this.contentside2;
             },
             changeContent(data) {
-                this.content = data
+                this.maincontent = data;
             },
             makeContent() {
                 return this.content;
             },
+            clickside1(data,event) {
+                this.contentside2 = data;
+                this.makeBorder(event);
+            },
             makeBorder(event) {
-                if (this.lastTarget != this.currentTarget && this.lastTarget != null && this.currentTarget != null) {
-                    this.lastTarget.classList.remove("borderYell");
+                if (event.target.tagName == "A") {
                     event.target.classList.add("borderYell");
-                    this.lastTarget = event.target;
                 } else {
-                    this.lastTarget = event.target;
-                    this.currentTarget = event.target;
+                    event.target.parentElement.classList.add("borderYell");
                 }
+                console.log(event.target);
+
             }
         }
     }
@@ -72,15 +85,27 @@
         max-height: 728px;
         overflow-y: hidden;
     }
+
     .footer {
-        height: 28px;
+        position: absolute;
+        top: 705px;
+        left: 0;
+        height: 23px;
         background-color: brown;
     }
+
     .borderYell {
         border-left-color: #ffff00;
         border-left-width: 2px;
         border-left-style: solid;
     }
+
+    .borderYellRight {
+        border-right-color: #D6E8EE;
+        border-right-width: 2px;
+        border-right-style: solid;
+    }
+
     .brand {
         position: absolute;
         top: 0;
@@ -89,28 +114,35 @@
         height: 100%;
         background-color: yellow;
     }
+
     .tete {
         height: 35px;
         background-color: white;
         box-shadow: none;
         color: black;
     }
+
     .tete li a {
         position: relative;
         height: 100% !important;
     }
-    .side1 {
-        height: 100%;
+
+    #side1 {
+        height: 670px;
         width: 50px;
         position: absolute;
         z-index: 1;
         top: 35px;
         left: 0;
+        text-align: center;
+        line-height: 50%;
+        align-content: center;
         background-color: #02457A;
         overflow-x: hidden;
         padding-top: 60px;
         transition: 0.5s;
     }
+
     .side1 a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
@@ -119,20 +151,34 @@
         display: block;
         transition: 0.3s;
     }
+
+    .side1 li {
+        align-content: center;
+        text-align: center;
+    }
+
     .side1 a:hover {
         color: #f1f1f1;
     }
+
     .side2 {
-        height: 100%;
+        height: 670px;
         width: 200px;
         position: absolute;
         z-index: 1;
+
         top: 35px;
         left: 50px;
         background-color: #001B48;
         overflow-x: hidden;
         transition: 0.5s;
     }
+
+    .side2 a {
+        width: 100%;
+        color: wheat;
+    }
+
     .content {
         transition: margin-left .5s;
         height: 700px;

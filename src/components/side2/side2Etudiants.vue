@@ -1,0 +1,35 @@
+<template>
+    <ul class="center-align">
+        <li @click="clickside1Right"><a class="waves-effect waves-teal btn-flat">Annuaire des Etudiants</a></li>
+        <li @click="clickside1Right"><a class="waves-effect waves-teal btn-flat">Inscription</a></li>
+        <li @click="clickside1Right"><a class="waves-effect waves-teal btn-flat">Présence des Etudiants</a></li>
+        <li @click="clickside1Right"><a class="waves-effect waves-teal btn-flat">Parcours Scolaire</a></li>
+        <li @click="clickside1Right"><a class="waves-effect waves-teal btn-flat">Gestion des stages</a></li>
+    </ul>
+</template>
+<script>
+    export default {
+        name: 'side2etudiants',
+        methods: {
+            clickside1Right(event) {
+                if (event.target.tagName == "A") {
+                    event.target.classList.add("borderYellRight");
+                } else {
+                    event.target.parentElement.classList.add("borderYellRight");
+                }
+                console.log(event.target);
+            }
+        }
+    }
+</script>
+<style>
+    .borderYellRight {
+        border-right-color: #D6E8EE;
+        border-right-width: 2px;
+        border-right-style: solid;
+    }
+
+    ul li a {
+        color: white;
+    }
+</style>
