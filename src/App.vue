@@ -55,7 +55,7 @@
         },
         methods: {
             dormer(data){
-                alert(data);
+                alert(data); //ligne important
             },
             setcontentside2() {
                 return this.contentside2;

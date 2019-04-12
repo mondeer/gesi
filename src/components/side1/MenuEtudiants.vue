@@ -19,7 +19,7 @@
     import parcours from  './maincontent/parcours.vue'
     import stages from    './maincontent/stages.vue'
     import presences from './maincontent/presences.vue'
-    import InscriptionForm from './maincontent/InscriptionForm.vue'
+    import inscription from './maincontent/inscription.vue'
 
     export default {
         name: "MenuEtudiants",
@@ -28,7 +28,7 @@
             annuaire,
             stages,
             parcours,
-            InscriptionForm
+            inscription
         },
         data: function () {
             return {

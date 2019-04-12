@@ -1,10 +1,10 @@
 <template>
     <ul class="center-align">
-        <li @click="clickside1Right('annuaire',$event)"><a class="waves-effect waves-teal btn-flat">Annuaire des Etudiants</a></li>
-        <li @click="clickside1Right('annuaire',$event)"><a class="waves-effect waves-teal btn-flat">Inscription</a></li>
+        <li @click="clickside1Right('nnuaire',$event)"><a class="waves-effect waves-teal btn-flat">Annuaire des Etudiants</a></li>
+        <li @click="clickside1Right('annire',$event)"><a class="waves-effect waves-teal btn-flat">Inscription</a></li>
         <li @click="clickside1Right('annuaire',$event)"><a class="waves-effect waves-teal btn-flat">Présence des Etudiants</a></li>
         <li @click="clickside1Right('annuaire',$event)"><a class="waves-effect waves-teal btn-flat">Parcours Scolaire</a></li>
-        <li @click="clickside1Right('annuaire',$event)"><a class="waves-effect waves-teal btn-flat">Gestion des stages</a></li>
+        <li @click="clickside1Right('naire',$event)"><a class="waves-effect waves-teal btn-flat">Gestion des stages</a></li>
     </ul>
 </template>
 <script>
@@ -18,7 +18,7 @@
                 } else {
                     event.target.parentElement.classList.add("borderYellRight");
                 }
-                console.log("eee"+event.target);
+                // console.log(event.target);
             }
         }
     }
