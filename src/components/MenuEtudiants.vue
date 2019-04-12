@@ -1,11 +1,11 @@
 <template>
     <div class="page container">
         <md-tabs class="md-primary" md-alignment="centered">
-            <md-tab id="tab-annuaire" md-label="Annuaire Etudiants" @click="changeContent('')"></md-tab>
-            <md-tab id="tab-emploi" md-label="Inscription" @click="changeContent('Insc')"></md-tab>
-            <md-tab id="tab-evaluation" md-label="Presences" @click="changeContent('')"></md-tab>
-            <md-tab id="tab-parcours" md-label="Parcours scolaire" @click="changeContent('')"></md-tab>
-            <md-tab id="tab-stage" md-label="Gestion des stages" @click="changeContent('')"></md-tab>
+            <md-tab id="tab-annuaire" md-label="Annuaire Etudiants" @click="changeContent('annuaire')"></md-tab>
+            <md-tab id="tab-emploi" md-label="Inscription" @click="changeContent('inscription')"></md-tab>
+            <md-tab id="tab-evaluation" md-label="Presences" @click="changeContent('presences')"></md-tab>
+            <md-tab id="tab-parcours" md-label="Parcours scolaire" @click="changeContent('parcours')"></md-tab>
+            <md-tab id="tab-stage" md-label="Gestion des stages" @click="changeContent('stages')"></md-tab>
         </md-tabs>
         <div id="content">
             <keep-alive>
@@ -15,13 +15,20 @@
     </div>
 </template>
 <script>
-    import CardReveal from './CardReveal.vue'
-    import InscriptionForm from './InscriptionForm.vue'
-    
+    import annuaire from  './maincontent/annuaire.vue'
+    import parcours from  './maincontent/parcours.vue'
+    import stages from    './maincontent/stages.vue'
+    import presences from './maincontent/presences.vue'
+    import InscriptionForm from './maincontent/InscriptionForm.vue'
+
     export default {
         name: "MenuEtudiants",
         components: {
-            CardReveal,InscriptionForm
+            presences,
+            annuaire,
+            stages,
+            parcours,
+            InscriptionForm
         },
         data: function () {
             return {
@@ -33,9 +40,7 @@
                 return this.content;
             },
             changeContent(data) {
-                if (data == 'Insc') {
-                    this.content = 'InscriptionForm';
-                }
+                this.content = data;
             }
         }
     }

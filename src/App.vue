@@ -16,7 +16,7 @@
         </div>
         <div class="side2" id="side2">
             <keep-alive>
-                <component v-bind:is="setcontentside2()"></component>
+                <component v-bind:is="setcontentside2()" @content_a_charger="dormer" ></component>
             </keep-alive>
         </div>
 
@@ -54,6 +54,9 @@
             }
         },
         methods: {
+            dormer(data){
+                alert(data);
+            },
             setcontentside2() {
                 return this.contentside2;
             },
@@ -166,7 +169,6 @@
         width: 200px;
         position: absolute;
         z-index: 1;
-
         top: 35px;
         left: 50px;
         background-color: #001B48;
@@ -174,9 +176,8 @@
         transition: 0.5s;
     }
 
-    .side2 a {
+    .side2 ul {
         width: 100%;
-        color: wheat;
     }
 
     .content {
