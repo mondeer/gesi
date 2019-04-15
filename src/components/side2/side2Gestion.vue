@@ -10,7 +10,12 @@
 </template>
 <script>
     export default {
-        name: 'side2gestion'
+        name: 'side2gestion',
+        methods: {
+            makeBorderRight() {
+
+            }
+        }
     }
 </script>
 <style>

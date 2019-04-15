@@ -7,7 +7,12 @@
 </template>
 <script>
 export default {
-    name: 'side2cours'
+    name: 'side2cours',
+    methods :{
+        makeBorderRight(){
+            
+        }
+    }
 }
 </script>
 <style>

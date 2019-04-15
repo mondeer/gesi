@@ -8,21 +8,21 @@
         </nav>
         <div class="side1" id="side1">
             <ul>
-                <li @click="clickside1('side2etudiants',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">supervisor_account</i></a></li>
-                <li @click="clickside1('side2professeurs',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">person</i></a></li>
-                <li @click="clickside1('side2cours',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">library_books</i></a></li>
-                <li @click="clickside1('side2gestion',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">assignment</i></a></li>
+                <li @click="setcontentside2('side2etudiants',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">supervisor_account</i></a></li>
+                <li @click="setcontentside2('side2professeurs',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">person</i></a></li>
+                <li @click="setcontentside2('side2cours',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">library_books</i></a></li>
+                <li @click="setcontentside2('side2gestion',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">assignment</i></a></li>
             </ul>
         </div>
         <div class="side2" id="side2">
             <keep-alive>
-                <component v-bind:is="setcontentside2()" @content_a_charger="dormer" ></component>
+                <component v-bind:is="getcontentside2()"></component>
             </keep-alive>
         </div>
 
-        <div class="content">
+        <div class="maincontent">
             <keep-alive>
-                <component v-bind:is="makeContent()"></component>
+                <component v-bind:is="getmainContent()"></component>
             </keep-alive>
         </div>
         <nav class="footer"></nav>
@@ -30,10 +30,11 @@
 </template>
 
 <script>
-    import side2etudiants from "./components/side2/side2Etudiants.vue"
+    import side2etudiants from   "./components/side2/side2Etudiants.vue"
     import side2professeurs from "./components/side2/side2Professeurs.vue"
-    import side2cours from "./components/side2/side2Cours.vue"
-    import side2gestion from "./components/side2/side2Gestion.vue"
+    import side2cours from       "./components/side2/side2Cours.vue"
+    import side2gestion from     "./components/side2/side2Gestion.vue"
+    import mainvide from         "./components/globaluse/mainvide.vue"
 
     export default {
         name: 'App',
@@ -41,36 +42,33 @@
             side2cours,
             side2etudiants,
             side2gestion,
-            side2professeurs
+            side2professeurs,
+            mainvide
         },
         data: function () {
             return {
                 menuVisible: false,
-                maincontent: "",
+                maincontent: "mainvide",
                 lastTarget: null,
-                currentTarget: "",
                 contentside2: "side2etudiants"
-
             }
         },
         methods: {
-            dormer(data){
-                alert(data); //ligne important
-            },
-            setcontentside2() {
+            getcontentside2() {
                 return this.contentside2;
             },
-            changeContent(data) {
+            getmainContent() {
+                return this.maincontent;
+            },
+            setmainContent(data) {
                 this.maincontent = data;
             },
-            makeContent() {
-                return this.content;
-            },
-            clickside1(data,event) {
+            setcontentside2(data,event) {
                 this.contentside2 = data;
-                this.makeBorder(event);
+                // Apres avoir chargé le contenu du side2 on met le border left a yellow
+                this.makeBorderYellow(event);
             },
-            makeBorder(event) {
+            makeBorderYellow(event) {
                 if (event.target.tagName == "A") {
                     event.target.classList.add("borderYell");
                 } else {
@@ -79,6 +77,11 @@
                 console.log(event.target);
 
             }
+        },
+        mounted() {
+            this.$on('mon_fils_1 ',(donnee)=>{
+                console.log("kadiongo "+donnee);
+            });
         }
     }
 </script>
@@ -166,6 +169,7 @@
 
     .side2 {
         height: 670px;
+        color: white;
         width: 200px;
         position: absolute;
         z-index: 1;
@@ -178,11 +182,13 @@
 
     .side2 ul {
         width: 100%;
+        color: white;
     }
 
-    .content {
+    .maincontent {
         transition: margin-left .5s;
         height: 700px;
+        align-content: center;
         background-color: #D6E8EE;
     }
 </style>

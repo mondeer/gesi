@@ -6,7 +6,12 @@
 </template>
 <script>
     export default {
-        name: 'side2professeurs'
+        name: 'side2professeurs',
+        methods: {
+            makeBorderRight() {
+
+            }
+        }
     }
 </script>
 <style>
