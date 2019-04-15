@@ -4,10 +4,10 @@
     </div>
 </template>
 <script>
-export default {
-    name : "mainvide"
-}
+    export default {
+        name: "mainvide"
+    }
 </script>
-<style lang="">
-    
+<style>
+
 </style>

@@ -8,21 +8,21 @@
         </nav>
         <div class="side1" id="side1">
             <ul>
-                <li @click="setcontentside2('side2etudiants',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">supervisor_account</i></a></li>
-                <li @click="setcontentside2('side2professeurs',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">person</i></a></li>
-                <li @click="setcontentside2('side2cours',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">library_books</i></a></li>
-                <li @click="setcontentside2('side2gestion',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">assignment</i></a></li>
+                <li @click="setContentSide2('side2etudiants',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">supervisor_account</i></a></li>
+                <li @click="setContentSide2('side2professeurs',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">person</i></a></li>
+                <li @click="setContentSide2('side2cours',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">library_books</i></a></li>
+                <li @click="setContentSide2('side2gestion',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">assignment</i></a></li>
             </ul>
         </div>
         <div class="side2" id="side2">
             <keep-alive>
-                <component v-bind:is="getcontentside2()"></component>
+                <component v-bind:is="getContentSide2()" @setmaincontent="setMainContent"></component>
             </keep-alive>
         </div>
 
         <div class="maincontent">
             <keep-alive>
-                <component v-bind:is="getmainContent()"></component>
+                <component v-bind:is="getMainContent()"></component>
             </keep-alive>
         </div>
         <nav class="footer"></nav>
@@ -35,6 +35,11 @@
     import side2cours from       "./components/side2/side2Cours.vue"
     import side2gestion from     "./components/side2/side2Gestion.vue"
     import mainvide from         "./components/globaluse/mainvide.vue"
+    import annuaire from         "./components/maincontent/annuaire.vue"
+    import presences from        "./components/maincontent/presences.vue"
+    import parcours from         "./components/maincontent/parcours.vue"
+    import stages from           "./components/maincontent/stages.vue"
+    import inscriptionForm from  "./components/maincontent/inscriptionForm.vue"
 
     export default {
         name: 'App',
@@ -43,6 +48,11 @@
             side2etudiants,
             side2gestion,
             side2professeurs,
+            inscriptionForm,
+            presences, 
+            stages,
+            parcours,
+            annuaire,
             mainvide
         },
         data: function () {
@@ -54,18 +64,17 @@
             }
         },
         methods: {
-            getcontentside2() {
+            getContentSide2() {
                 return this.contentside2;
             },
-            getmainContent() {
+            getMainContent() {
                 return this.maincontent;
             },
-            setmainContent(data) {
+            setMainContent(data) {
                 this.maincontent = data;
             },
-            setcontentside2(data,event) {
+            setContentSide2(data,event) {
                 this.contentside2 = data;
-                // Apres avoir chargé le contenu du side2 on met le border left a yellow
                 this.makeBorderYellow(event);
             },
             makeBorderYellow(event) {
@@ -76,12 +85,10 @@
                 }
                 console.log(event.target);
 
+            },
+            callme(don){
+                console.log('Je suis reveillé: '+don);
             }
-        },
-        mounted() {
-            this.$on('mon_fils_1 ',(donnee)=>{
-                console.log("kadiongo "+donnee);
-            });
         }
     }
 </script>
@@ -187,6 +194,8 @@
 
     .maincontent {
         transition: margin-left .5s;
+        position: relative;
+        left: 250px;
         height: 700px;
         align-content: center;
         background-color: #D6E8EE;
