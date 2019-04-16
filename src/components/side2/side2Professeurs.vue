@@ -1,9 +1,7 @@
 <template>
     <ul class="center-align">
-        <li @click="clickside2('annuaireProfs',$event)"><a class="waves-effect waves-teal btn-flat">Annuaire des
-                Professeurs</a></li>
-        <li @click="clickside2('evaluationProfs',$event)"><a class="waves-effect waves-teal btn-flat">Evaluation des
-                Professeurs</a></li>
+        <li @click="clickside2('annuaireProfs',$event)"><a class="waves-effect waves-teal btn-flat">Annuaire des Professeurs</a></li>
+        <li @click="clickside2('evaluationProfs',$event)"><a class="waves-effect waves-teal btn-flat">Evaluation des Professeurs</a></li>
     </ul>
 </template>
 <script>
@@ -13,7 +11,7 @@
             makeBorderRight() {
 
             },
-            clickside2() {
+            clickside2(data,event) {
                 this.$emit('setmaincontent', data);
             }
         }

@@ -15,7 +15,7 @@
             makeBorderRight() {
 
             },
-            clickside2() {
+            clickside2(data, event) {
                 this.$emit('setmaincontent', data);
             }
         }

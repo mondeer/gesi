@@ -3,10 +3,12 @@
         <nav class="tete" id="tete">
             <div class="nav-wrapper">
                 <span class="brand"><i class="material-icons right tiny">add</i></span>
-                <a class="waves-effect waves-teal btn-flat right"><i class="material-icons right tiny">add</i></a>
+                <span class="waves-effect waves-teal btn-flat right" id="brand2"><i class="material-icons center-align">add</i></span>
+                <span class="waves-effect waves-teal btn-flat right" id="brand3"><i class="material-icons center-align">add</i></span>
+                <span class="waves-effect waves-teal btn-flat right" id="brand4"><i class="material-icons center-align">add</i></span>
             </div>
         </nav>
-        <div class="side1" id="side1">
+        <div class="side1 valign-wrappr" id="side1">
             <ul>
                 <li @click="setContentSide2('side2etudiants',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">supervisor_account</i></a></li>
                 <li @click="setContentSide2('side2professeurs',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">person</i></a></li>
@@ -14,18 +16,17 @@
                 <li @click="setContentSide2('side2gestion',$event)"><a class="waves-effect waves-teal btn-flat"><i class="material-icons medium">assignment</i></a></li>
             </ul>
         </div>
-        <div class="side2" id="side2">
+        <div class="side2 valign-wrapper" id="side2">
             <keep-alive>
                 <component v-bind:is="getContentSide2()" @setmaincontent="setMainContent"></component>
             </keep-alive>
         </div>
-
-        <div class="maincontent">
+        <div class="maincontent" id="maincontent">
             <keep-alive>
                 <component v-bind:is="getMainContent()"></component>
             </keep-alive>
         </div>
-        <nav class="footer"></nav>
+        <nav class="footer" id="footer"></nav>
     </div>
 </template>
 
@@ -36,6 +37,9 @@
     import side2gestion from     "./components/side2/side2Gestion.vue"
     import mainvide from         "./components/globaluse/mainvide.vue"
     import annuaire from         "./components/maincontent/annuaire.vue"
+    import annuaireCours from    "./components/maincontent/annuaireCours.vue"
+    import emploiTemps from      "./components/maincontent/emploiTemps.vue"
+    import annuaireProfs from    "./components/maincontent/annuaireProfs.vue"
     import presences from        "./components/maincontent/presences.vue"
     import parcours from         "./components/maincontent/parcours.vue"
     import stages from           "./components/maincontent/stages.vue"
@@ -44,6 +48,10 @@
     export default {
         name: 'App',
         components: {
+            annuaire,
+            annuaireCours,
+            annuaireProfs,
+            emploiTemps,
             side2cours,
             side2etudiants,
             side2gestion,
@@ -52,7 +60,6 @@
             presences, 
             stages,
             parcours,
-            annuaire,
             mainvide
         },
         data: function () {
@@ -84,7 +91,6 @@
                     event.target.parentElement.classList.add("borderYell");
                 }
                 console.log(event.target);
-
             },
             callme(don){
                 console.log('Je suis reveillé: '+don);
@@ -104,7 +110,7 @@
         top: 705px;
         left: 0;
         height: 23px;
-        background-color: brown;
+        background-color: rgb(51, 143, 219);
     }
 
     .borderYell {
@@ -148,7 +154,6 @@
         top: 35px;
         left: 0;
         text-align: center;
-        line-height: 50%;
         align-content: center;
         background-color: #02457A;
         overflow-x: hidden;
@@ -157,9 +162,9 @@
     }
 
     .side1 a {
-        padding: 8px 8px 8px 32px;
+        /* padding: 8px 8px 8px 32px; */
         text-decoration: none;
-        font-size: 25px;
+        /* font-size: 25px; */
         color: white;
         display: block;
         transition: 0.3s;
@@ -175,29 +180,41 @@
     }
 
     .side2 {
+        text-align: center;
         height: 670px;
-        color: white;
-        width: 200px;
+        width: 220px;
         position: absolute;
         z-index: 1;
         top: 35px;
         left: 50px;
         background-color: #001B48;
+        color: yellow;
         overflow-x: hidden;
         transition: 0.5s;
     }
 
-    .side2 ul {
+    #side2 ul {
         width: 100%;
         color: white;
+        vertical-align: center;
     }
 
     .maincontent {
         transition: margin-left .5s;
         position: relative;
-        left: 250px;
+        padding: 10px;
+        left: 270px;
         height: 700px;
         align-content: center;
         background-color: #D6E8EE;
+    }
+    #side2 > ul > li > a{
+        color:white;
+        width: 100%;
+    }
+    #brand2{
+        text-align : center;
+        align-content: center;
+        
     }
 </style>
