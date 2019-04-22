@@ -3,7 +3,8 @@
 import {
     app,
     protocol,
-    BrowserWindow
+    BrowserWindow,
+    ipcMain
 } from 'electron'
 import {
     createProtocol,
@@ -11,13 +12,13 @@ import {
 } from 'vue-cli-plugin-electron-builder/lib'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 let electron = require("electron");
-let win
+let win;
 
 protocol.registerStandardSchemes(['app'], {
     secure: true
 })
 
-function createWindow(x,y) {
+function createWindow(x, y) {
     // Create the browser window.
     win = new BrowserWindow({
         width: x,
@@ -40,10 +41,7 @@ function createWindow(x,y) {
     })
 }
 
-// Quit when all windows are closed.
 app.on('window-all-closed', () => {
-    // On macOS it is common for applications and their menu bar
-    // to stay active until the user quits explicitly with Cmd + Q
     if (process.platform !== 'darwin') {
         app.quit()
     }
@@ -56,9 +54,12 @@ app.on('ready', async () => {
         // Install Vue Devtools
         await installVueDevtools()
     }
-    const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
-    console.log("width:"+width+", height: "+height);
-    createWindow(width,height)
+    const {
+        width,
+        height
+    } = electron.screen.getPrimaryDisplay().workAreaSize
+    console.log("width: " + width + ", height: " + height);
+    createWindow(width, height)
 })
 
 // Exit cleanly on request from parent process in development mode.
@@ -69,9 +70,24 @@ if (isDevelopment) {
                 app.quit()
             }
         })
+
     } else {
         process.on('SIGTERM', () => {
             app.quit()
         })
     }
 }
+
+
+ipcMain.on('doAction', (event, arg) => {
+    // console.log(" le render process est: "+ arg) // affiche "ping"
+    if(arg == 'close'){
+        app.quit();
+    }else if(arg == 'minimize'){
+        win.minimize();
+        event.sender.send('doAction', 'la fenetre est reduite')
+    }else{
+        win.maximize();
+        event.sender.send('doAction', 'la fenetre est agrandi')
+    }
+})

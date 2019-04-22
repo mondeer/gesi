@@ -1,6 +1,6 @@
 <template>
     <div>
-        le monde est beau
+        Formulaire d'Inscription
     </div>
 </template>
 

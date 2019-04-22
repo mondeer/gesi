@@ -1,6 +1,6 @@
 <template>
     <div class="annuaire">
-        L'annuaire
+        Annuaire des Etudiants
     </div>
 </template>
 <script>

@@ -1,6 +1,6 @@
 <template>
     <div class="presences">
-        presences
+        Presences
     </div>
 </template>
 <script>

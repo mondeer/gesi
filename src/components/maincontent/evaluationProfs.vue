@@ -1,6 +1,6 @@
 <template>
     <div>
-        Evaluation Professeurs
+        Evaluation des Professeurs
     </div>
 </template>
 <script>

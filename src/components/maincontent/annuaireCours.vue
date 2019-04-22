@@ -1,6 +1,6 @@
 <template>
     <div>
-COurs
+        Annuaire des Cours
     </div>
 </template>
 <script>

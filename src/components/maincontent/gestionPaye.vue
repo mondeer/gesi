@@ -1,6 +1,6 @@
 <template>
     <div>
-        Gesstion Paye
+        Gestion de Paye
     </div>
 </template>
 <script>

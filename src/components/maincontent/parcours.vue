@@ -1,6 +1,6 @@
 <template>
     <div class="parcours">
-        parcours
+        Parcours
     </div>
 </template>
 <script>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        gestion Materiel
+        Gestion du Materiel
     </div>
 </template>
 <script>

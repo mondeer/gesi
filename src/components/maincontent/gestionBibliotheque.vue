@@ -1,6 +1,6 @@
 <template>
     <div>
-        gestion Bibliotheque
+        Gestion Bibliotheque
     </div>
 </template>
 <script>

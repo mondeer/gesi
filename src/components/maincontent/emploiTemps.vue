@@ -1,6 +1,6 @@
 <template>
     <div>
-        Emploie Temps
+        Emploie du Temps
     </div>
 </template>
 <script>

@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        Annuaire des professeurs
     </div>
 </template>
 <script>
