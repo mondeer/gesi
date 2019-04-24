@@ -13,10 +13,21 @@
         </nav>
         <div class="side1 valign-wrappr" id="side1">
             <ul>
-                <li @click="setContentSide2({side2: 'side2etudiants',data: 'etudiant'},$event)" class="tooltipped" data-position="right" data-tooltip="Etudiant"><a ref="etudiant" class="waves-effect waves-teal btn-flat"><i class="material-icons medium">supervisor_account</i></a></li>
-                <li @click="setContentSide2({side2: 'side2professeurs',data: 'professeurs'},$event)" class="tooltipped" data-position="right" data-tooltip="Professeur"><a ref="professeurs" class="waves-effect waves-teal btn-flat"><i class="material-icons medium">person</i></a></li>
-                <li @click="setContentSide2({side2: 'side2cours',data: 'cours'},$event)" class="tooltipped" data-position="right" data-tooltip="Cours"><a ref="cours" class="waves-effect waves-teal btn-flat"><i class="material-icons medium">library_books</i></a></li>
-                <li @click="setContentSide2({side2: 'side2gestion',data: 'gestion'},$event)" class="tooltipped" data-position="right" data-tooltip="Gestion"><a ref="gestion" class="waves-effect waves-teal btn-flat"><i class="material-icons medium">assignment</i></a></li>
+                <li @click="setContentSide2({side2: 'side2etudiants',data: 'etudiant'},$event)" class="tooltipped"
+                    data-position="right" data-tooltip="Etudiants"><a ref="etudiant"
+                        class="waves-effect waves-teal btn-flat"><i
+                            class="material-icons medium">supervisor_account</i></a></li>
+                <li @click="setContentSide2({side2: 'side2professeurs',data: 'professeurs'},$event)" class="tooltipped"
+                    data-position="right" data-tooltip="Professeurs"><a ref="professeurs"
+                        class="waves-effect waves-teal btn-flat"><i class="material-icons medium">person</i></a></li>
+                <li @click="setContentSide2({side2: 'side2cours',data: 'cours'},$event)" class="tooltipped"
+                    data-position="right" data-tooltip="Cours"><a ref="cours"
+                        class="waves-effect waves-teal btn-flat"><i class="material-icons medium">library_books</i></a>
+                </li>
+                <li @click="setContentSide2({side2: 'side2gestion',data: 'gestion'},$event)" class="tooltipped"
+                    data-position="right" data-tooltip="Gestion"><a ref="gestion"
+                        class="waves-effect waves-teal btn-flat"><i class="material-icons medium">assignment</i></a>
+                </li>
             </ul>
         </div>
         <div class="side2 valign-wrapper" id="side2">
@@ -85,10 +96,11 @@
             stages,
         },
         mounted() {
-
             var elems = this.$el.querySelectorAll(".tooltipped");
             M.Tooltip.init(elems);
-            
+
+            var fbtn = document.querySelectorAll('.fixed-action-btn');
+            M.FloatingActionButton.init(fbtn);
 
             //Juste une ligne d'essaye
             ipcRenderer.on('doAction', (event, arg) => {
@@ -96,8 +108,6 @@
             });
             // permet de mettre au debut le border en yellow
             this.$refs['etudiant'].classList.add("borderYell");
-
-
         },
         data: function () {
             return {
@@ -120,8 +130,6 @@
             setContentSide2(data, event) {
                 this.contentside2 = data.side2;
                 this.makeBorderleftYellow(event, data.data);
-
-
             },
             makeBorderleftYellow(event, data) {
                 if (this.ancienRef != data) {
@@ -150,8 +158,8 @@
     }
 
     nav .nav-wrapper i {
-        height: 36px;
-        line-height: 36px;
+        height: 30px;
+        line-height: 30px;
     }
 
     .footer {
@@ -178,7 +186,7 @@
     }
 
     .tete {
-        height: 35px;
+        height: 30px;
         background-color: white;
         box-shadow: none;
         color: black;
@@ -190,11 +198,11 @@
     }
 
     #side1 {
-        height: 670px;
+        height: 675px;
         width: 50px;
         position: absolute;
         z-index: 1;
-        top: 35px;
+        top: 30px;
         left: 0;
         text-align: center;
         align-content: center;
@@ -224,11 +232,11 @@
 
     .side2 {
         text-align: center;
-        height: 670px;
+        height: 675px;
         width: 220px;
         position: absolute;
         z-index: 1;
-        top: 35px;
+        top: 30px;
         left: 50px;
         background-color: #02457A;
         color: yellow;
@@ -249,8 +257,8 @@
     .maincontent {
         transition: margin-left .5s;
         position: relative;
-        padding: 10px;
         left: 270px;
+        padding: 10px;
         height: 700px;
         align-content: center;
         background-color: #D6E8EE;
@@ -267,5 +275,12 @@
         text-align: center;
         align-content: center;
 
+    }
+
+    .notif {
+        width: 100%;
+        height: 25px;
+        background-color: rgba(255, 255, 255, 0.884);
+        margin-bottom: 5px;
     }
 </style>
