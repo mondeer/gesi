@@ -1,13 +1,6 @@
 <template>
     <div class="annuaire">
         <TableSearch />
-
-        <!-- Button d'ajout d'un Etudiant -->
-        <div class="fixed-action-btn">
-            <a class="btn-floating waves-effect btn-large red">
-                <i class="large material-icons">add</i>
-            </a>
-        </div>
     </div>
 </template>
 <script>
@@ -22,8 +15,7 @@
             elements.forEach(el => {
                 el.classList.add('card');
                 el.classList.add('white');
-                el.classList.add('z-depth-3');
-                // el.classList.add('darken-1');
+                el.classList.add('z-depth-3');   
             });
 
             var fabtn = document.querySelectorAll('.fixed-action-btn');
@@ -36,6 +28,6 @@
         margin: 15px;
     }
 .annuaire{
-    width: 100%;
+    width: 100%;  
 }
 </style>

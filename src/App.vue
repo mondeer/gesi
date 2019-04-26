@@ -3,30 +3,21 @@
         <nav class="tete" id="tete">
             <div class="nav-wrapper">
                 <div class="brand"><i class="material-icons center-align">add</i></div>
-                <div class="waves-effect waves-teal btn-flat right" id="brand2" @click="doAction('close')"><i
-                        class="material-icons center-align tiny">close</i></div>
-                <div class="waves-effect waves-teal btn-flat right" id="brand3" @click="doAction('maximize')"><i
-                        class="material-icons center-align tiny">remove</i></div>
-                <div class="waves-effect waves-teal btn-flat right" id="brand4" @click="doAction('minimize')"><i
-                        class="material-icons center-align tiny">add</i></div>
+                <div class="waves-effect waves-teal btn-flat right" id="brand2" @click="doAction('close')"><i class="material-icons center-align tiny">close</i></div>
+                <div class="waves-effect waves-teal btn-flat right" id="brand3" @click="doAction('maximize')"><i class="material-icons center-align tiny">remove</i></div>
+                <div class="waves-effect waves-teal btn-flat right" id="brand4" @click="doAction('minimize')"><i class="material-icons center-align tiny">add</i></div>
             </div>
         </nav>
         <div class="side1 valign-wrappr" id="side1">
             <ul>
                 <li @click="setContentSide2({side2: 'side2etudiants',data: 'etudiant'},$event)" class="tooltipped"
-                    data-position="right" data-tooltip="Etudiants"><a ref="etudiant"
-                        class="waves-effect waves-teal btn-flat"><i
-                            class="material-icons medium">supervisor_account</i></a></li>
+                    data-position="right" data-tooltip="Etudiants"><a ref="etudiant" class="waves-effect waves-teal btn-flat"><i class="material-icons medium">supervisor_account</i></a></li>
                 <li @click="setContentSide2({side2: 'side2professeurs',data: 'professeurs'},$event)" class="tooltipped"
-                    data-position="right" data-tooltip="Professeurs"><a ref="professeurs"
-                        class="waves-effect waves-teal btn-flat"><i class="material-icons medium">person</i></a></li>
+                    data-position="right" data-tooltip="Professeurs"><a ref="professeurs" class="waves-effect waves-teal btn-flat"><i class="material-icons medium">person</i></a></li>
                 <li @click="setContentSide2({side2: 'side2cours',data: 'cours'},$event)" class="tooltipped"
-                    data-position="right" data-tooltip="Cours"><a ref="cours"
-                        class="waves-effect waves-teal btn-flat"><i class="material-icons medium">library_books</i></a>
-                </li>
+                    data-position="right" data-tooltip="Cours"><a ref="cours" class="waves-effect waves-teal btn-flat"><i class="material-icons medium">library_books</i></a></li>
                 <li @click="setContentSide2({side2: 'side2gestion',data: 'gestion'},$event)" class="tooltipped"
-                    data-position="right" data-tooltip="Gestion"><a ref="gestion"
-                        class="waves-effect waves-teal btn-flat"><i class="material-icons medium">assignment</i></a>
+                    data-position="right" data-tooltip="Gestion"><a ref="gestion" class="waves-effect waves-teal btn-flat"><i class="material-icons medium">assignment</i></a>
                 </li>
             </ul>
         </div>
@@ -257,6 +248,7 @@
     .maincontent {
         transition: margin-left .5s;
         position: relative;
+        width:1096px;
         left: 270px;
         padding: 10px;
         height: 700px;
