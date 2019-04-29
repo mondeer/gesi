@@ -1,4 +1,5 @@
 <template>
+<v-app>
     <div class="page-container">
         <nav class="tete" id="tete">
             <div class="nav-wrapper">
@@ -33,6 +34,7 @@
         </div>
         <nav class="footer" id="footer"></nav>
     </div>
+</v-app> 
 </template>
 
 <script>

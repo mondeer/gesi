@@ -6,6 +6,8 @@ import 'materialize-css/dist/css/materialize.css'
 import 'materialize-css'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
+
 
 Vue.use(Vuetify)
 

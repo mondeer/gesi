@@ -1,14 +1,14 @@
 <template>
     <div class="annuaire">
-        <TableSearch />
+        <Table />
     </div>
 </template>
 <script>
-    import TableSearch from '@/components/globaluse/TableSearch.vue'
+    import Table from '@/components/globaluse/Table.vue'
     export default {
         name: 'annuaire',
         components: {
-            TableSearch
+            Table
         },
         mounted() {
             var elements = document.querySelectorAll('table.highlight>tbody>tr');
