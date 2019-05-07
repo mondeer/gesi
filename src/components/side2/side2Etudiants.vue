@@ -12,11 +12,11 @@
         name: 'side2etudiants',
         data : function(){
             return{
-                ancienRef : "E01"
+                ancienRef : "E01",
             }
         },
         mounted(){
-            // this.$refs['E01'].classList.add("BackgroundGris");
+            
         },
         methods: {
             clickside2(data, event) {

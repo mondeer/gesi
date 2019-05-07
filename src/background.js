@@ -80,7 +80,7 @@ if (isDevelopment) {
 
 
 ipcMain.on('doAction', (event, arg) => {
-    // console.log(" le render process est: "+ arg) // affiche "ping"
+    console.log(" le render process est: "+ arg) // affiche "ping"
     if(arg == 'close'){
         app.quit();
     }else if(arg == 'minimize'){

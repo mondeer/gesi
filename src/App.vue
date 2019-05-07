@@ -1,51 +1,57 @@
 <template>
-<v-app>
-    <div class="page-container">
-        <nav class="tete" id="tete">
-            <div class="nav-wrapper">
-                <div class="brand"><i class="material-icons center-align">add</i></div>
-                <div class="waves-effect waves-teal btn-flat right" id="brand2" @click="doAction('close')"><i class="material-icons center-align tiny">close</i></div>
-                <div class="waves-effect waves-teal btn-flat right" id="brand3" @click="doAction('maximize')"><i class="material-icons center-align tiny">remove</i></div>
-                <div class="waves-effect waves-teal btn-flat right" id="brand4" @click="doAction('minimize')"><i class="material-icons center-align tiny">add</i></div>
+    <v-app>
+            <nav class="tete" id="tete">
+                <div class="nav-wrapper">
+                    <div class="brand"><i class="material-icons center-align">add</i></div>
+                    <div class="waves-effect waves-teal btn-flat right" id="brand2" @click="doAction('close')"><i
+                            class="material-icons center-align tiny">close</i></div>
+                    <div class="waves-effect waves-teal btn-flat right" id="brand3" @click="doAction('maximize')"><i
+                            class="material-icons center-align tiny">remove</i></div>
+                    <div class="waves-effect waves-teal btn-flat right" id="brand4" @click="doAction('minimize')"><i
+                            class="material-icons center-align tiny">add</i></div>
+                </div>
+            </nav>
+            <div class="side1 valign-wrappr" id="side1">
+                <ul>
+                    <li @click="setContentSide2({side2: 'side2etudiants',data: 'etudiant'},$event)" class="tooltipped"
+                        data-position="right" data-tooltip="Etudiants"><a ref="etudiant"
+                            class="waves-effect waves-teal btn-flat"><i
+                                class="material-icons medium">supervisor_account</i></a></li>
+                    <li @click="setContentSide2({side2: 'side2professeurs',data: 'professeurs'},$event)"
+                        class="tooltipped" data-position="right" data-tooltip="Professeurs"><a ref="professeurs"
+                            class="waves-effect waves-teal btn-flat"><i class="material-icons medium">person</i></a>
+                    </li>
+                    <li @click="setContentSide2({side2: 'side2cours',data: 'cours'},$event)" class="tooltipped"
+                        data-position="right" data-tooltip="Cours"><a ref="cours"
+                            class="waves-effect waves-teal btn-flat"><i
+                                class="material-icons medium">library_books</i></a></li>
+                    <li @click="setContentSide2({side2: 'side2gestion',data: 'gestion'},$event)" class="tooltipped"
+                        data-position="right" data-tooltip="Gestion"><a ref="gestion"
+                            class="waves-effect waves-teal btn-flat"><i class="material-icons medium">assignment</i></a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-        <div class="side1 valign-wrappr" id="side1">
-            <ul>
-                <li @click="setContentSide2({side2: 'side2etudiants',data: 'etudiant'},$event)" class="tooltipped"
-                    data-position="right" data-tooltip="Etudiants"><a ref="etudiant" class="waves-effect waves-teal btn-flat"><i class="material-icons medium">supervisor_account</i></a></li>
-                <li @click="setContentSide2({side2: 'side2professeurs',data: 'professeurs'},$event)" class="tooltipped"
-                    data-position="right" data-tooltip="Professeurs"><a ref="professeurs" class="waves-effect waves-teal btn-flat"><i class="material-icons medium">person</i></a></li>
-                <li @click="setContentSide2({side2: 'side2cours',data: 'cours'},$event)" class="tooltipped"
-                    data-position="right" data-tooltip="Cours"><a ref="cours" class="waves-effect waves-teal btn-flat"><i class="material-icons medium">library_books</i></a></li>
-                <li @click="setContentSide2({side2: 'side2gestion',data: 'gestion'},$event)" class="tooltipped"
-                    data-position="right" data-tooltip="Gestion"><a ref="gestion" class="waves-effect waves-teal btn-flat"><i class="material-icons medium">assignment</i></a>
-                </li>
-            </ul>
-        </div>
-        <div class="side2 valign-wrapper" id="side2">
-            <keep-alive>
-                <component v-bind:is="getContentSide2()" @setmaincontent="setMainContent"></component>
-            </keep-alive>
-        </div>
-        <div class="maincontent" id="maincontent">
-            <keep-alive>
-                <component v-bind:is="getMainContent()"></component>
-            </keep-alive>
-        </div>
-        <nav class="footer" id="footer"></nav>
-    </div>
-</v-app> 
+            <div class="side2 valign-wrapper" id="side2">
+                <keep-alive>
+                    <component v-bind:is="getContentSide2()" @setmaincontent="setMainContent"></component>
+                </keep-alive>
+            </div>
+            <div class="maincontent" id="maincontent">
+                <keep-alive>
+                    <component v-bind:is="getMainContent()"></component>
+                </keep-alive>
+            </div>
+            <nav class="footer" id="footer"></nav>
+        
+    </v-app>
 </template>
 
 <script>
-    const {
-        ipcRenderer
-    } = require('electron')
+    const {ipcRenderer} = require('electron')
     import side2etudiants from "./components/side2/side2Etudiants.vue"
     import side2professeurs from "./components/side2/side2Professeurs.vue"
     import side2cours from "./components/side2/side2Cours.vue"
     import side2gestion from "./components/side2/side2Gestion.vue"
-    import mainvide from "./components/globaluse/mainvide.vue"
     import annuaire from "./components/maincontent/annuaire.vue"
     import fraisScolaire from "./components/maincontent/fraisScolaire.vue"
     import gestionDepenses from "./components/maincontent/gestionDepenses.vue"
@@ -73,7 +79,6 @@
             evaluationEtudiants,
             evaluationProfs,
             fraisScolaire,
-            mainvide,
             gestionPaye,
             gestionLocaux,
             gestionMateriel,
@@ -145,9 +150,9 @@
 </script>
 
 <style lang="css" scoped>
-    .page-container {
-        max-height: 728px;
+    * {
         overflow-y: hidden;
+        max-height: 728px;
     }
 
     nav .nav-wrapper i {
@@ -206,9 +211,7 @@
     }
 
     .side1 a {
-        /* padding: 8px 8px 8px 32px; */
         text-decoration: none;
-        /* font-size: 25px; */
         color: white;
         display: block;
         transition: 0.3s;
@@ -250,7 +253,7 @@
     .maincontent {
         transition: margin-left .5s;
         position: relative;
-        width:1096px;
+        width: 1096px;
         left: 270px;
         padding: 10px;
         height: 700px;
@@ -264,17 +267,9 @@
         display: block;
 
     }
-
-    #brand2 {
+    .brand {
         text-align: center;
         align-content: center;
-
-    }
-
-    .notif {
-        width: 100%;
-        height: 25px;
-        background-color: rgba(255, 255, 255, 0.884);
-        margin-bottom: 5px;
+        height: 30px;
     }
 </style>

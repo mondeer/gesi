@@ -1,21 +1,19 @@
 <template>
-    <div class="annuaire">
-        <Table />
-    </div>
+    <TableEtudiant />
 </template>
 <script>
-    import Table from '@/components/globaluse/Table.vue'
+    import TableEtudiant from '@/components/globaluse/TableEtudiant.vue'
     export default {
         name: 'annuaire',
         components: {
-            Table
+            TableEtudiant
         },
         mounted() {
             var elements = document.querySelectorAll('table.highlight>tbody>tr');
             elements.forEach(el => {
                 el.classList.add('card');
                 el.classList.add('white');
-                el.classList.add('z-depth-3');   
+                el.classList.add('z-depth-3');
             });
 
             var fabtn = document.querySelectorAll('.fixed-action-btn');
@@ -27,7 +25,12 @@
     .fixed-action-btn {
         margin: 15px;
     }
-.annuaire{
-    width: 100%;  
-}
+
+    .annuaire {
+        width: 100%;
+    }
+
+    html {
+        overflow-x: hidden;
+    }
 </style>
