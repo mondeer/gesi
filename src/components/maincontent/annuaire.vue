@@ -1,14 +1,15 @@
 <template>
     <div class="annuaire">
-        <Table />
+        <!-- <Table /> -->
     </div>
 </template>
 <script>
-    import Table from '@/components/globaluse/Table.vue'
+
+    import mytable from '@/components/globalUse/Table.vue'
     export default {
         name: 'annuaire',
         components: {
-            Table
+            mytable
         },
         mounted() {
             var elements = document.querySelectorAll('table.highlight>tbody>tr');

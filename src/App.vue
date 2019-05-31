@@ -1,40 +1,47 @@
 <template>
-<v-app>
-    <div class="page-container">
-        <nav class="tete" id="tete">
-            <div class="nav-wrapper">
-                <div class="brand"><i class="material-icons center-align">add</i></div>
-                <div class="waves-effect waves-teal btn-flat right" id="brand2" @click="doAction('close')"><i class="material-icons center-align tiny">close</i></div>
-                <div class="waves-effect waves-teal btn-flat right" id="brand3" @click="doAction('maximize')"><i class="material-icons center-align tiny">remove</i></div>
-                <div class="waves-effect waves-teal btn-flat right" id="brand4" @click="doAction('minimize')"><i class="material-icons center-align tiny">add</i></div>
+    <v-app>
+        <div class="page-container">
+            <v-toolbar height="30px">
+                <v-toolbar-side-icon></v-toolbar-side-icon>
+                <v-toolbar-title></v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-toolbar-items class="hidden-sm-and-down">
+                    <v-btn flat small @click="doAction('minimize')">
+                        <v-icon>minimize</v-icon>
+                    </v-btn>
+                    <v-btn flat small @click="doAction('maximize')">
+                        <v-icon>maximize</v-icon>
+                    </v-btn>
+                    <v-btn flat small color="error" @click="doAction('close')">
+                        <v-icon>clear</v-icon>
+                    </v-btn>
+                </v-toolbar-items>
+            </v-toolbar>
+            <div class="side1 valign-wrappr" id="side1" >
+                <v-container fill-height>
+                    <v-btn flat block ref="etudiant"
+                        @click="setContentSide2({side2: 'side2etudiants',data: 'etudiant'},$event)">Epa</v-btn>
+                    <v-btn flat block ref="professeurs"
+                        @click="setContentSide2({side2: 'side2professeurs',data: 'professeurs'},$event)">Epa</v-btn>
+                    <v-btn flat block ref="cours" @click="setContentSide2({side2: 'side2cours',data: 'cours'},$event)">
+                        Epa</v-btn>
+                    <v-btn flat block ref="gestion"
+                        @click="setContentSide2({side2: 'side2gestion',data: 'gestion'},$event)">Epa</v-btn>
+                </v-container>
             </div>
-        </nav>
-        <div class="side1 valign-wrappr" id="side1">
-            <ul>
-                <li @click="setContentSide2({side2: 'side2etudiants',data: 'etudiant'},$event)" class="tooltipped"
-                    data-position="right" data-tooltip="Etudiants"><a ref="etudiant" class="waves-effect waves-teal btn-flat"><i class="material-icons medium">supervisor_account</i></a></li>
-                <li @click="setContentSide2({side2: 'side2professeurs',data: 'professeurs'},$event)" class="tooltipped"
-                    data-position="right" data-tooltip="Professeurs"><a ref="professeurs" class="waves-effect waves-teal btn-flat"><i class="material-icons medium">person</i></a></li>
-                <li @click="setContentSide2({side2: 'side2cours',data: 'cours'},$event)" class="tooltipped"
-                    data-position="right" data-tooltip="Cours"><a ref="cours" class="waves-effect waves-teal btn-flat"><i class="material-icons medium">library_books</i></a></li>
-                <li @click="setContentSide2({side2: 'side2gestion',data: 'gestion'},$event)" class="tooltipped"
-                    data-position="right" data-tooltip="Gestion"><a ref="gestion" class="waves-effect waves-teal btn-flat"><i class="material-icons medium">assignment</i></a>
-                </li>
-            </ul>
+            <div class="side2 valign-wrapper" id="side2">
+                <keep-alive>
+                    <component v-bind:is="getContentSide2()" @setmaincontent="setMainContent"></component>
+                </keep-alive>
+            </div>
+            <div class="maincontent" id="maincontent">
+                <keep-alive>
+                    <component v-bind:is="getMainContent()"></component>
+                </keep-alive>
+            </div>
+            <nav class="footer" id="footer"></nav>
         </div>
-        <div class="side2 valign-wrapper" id="side2">
-            <keep-alive>
-                <component v-bind:is="getContentSide2()" @setmaincontent="setMainContent"></component>
-            </keep-alive>
-        </div>
-        <div class="maincontent" id="maincontent">
-            <keep-alive>
-                <component v-bind:is="getMainContent()"></component>
-            </keep-alive>
-        </div>
-        <nav class="footer" id="footer"></nav>
-    </div>
-</v-app> 
+    </v-app>
 </template>
 
 <script>
@@ -45,7 +52,6 @@
     import side2professeurs from "./components/side2/side2Professeurs.vue"
     import side2cours from "./components/side2/side2Cours.vue"
     import side2gestion from "./components/side2/side2Gestion.vue"
-    import mainvide from "./components/globaluse/mainvide.vue"
     import annuaire from "./components/maincontent/annuaire.vue"
     import fraisScolaire from "./components/maincontent/fraisScolaire.vue"
     import gestionDepenses from "./components/maincontent/gestionDepenses.vue"
@@ -61,7 +67,7 @@
     import presences from "./components/maincontent/presences.vue"
     import parcours from "./components/maincontent/parcours.vue"
     import stages from "./components/maincontent/stages.vue"
-    import inscriptionForm from "./components/maincontent/inscriptionForm.vue"
+    import inscriptionForm from "./components/maincontent/InscriptionForm.vue"
 
     export default {
         name: 'App',
@@ -73,7 +79,6 @@
             evaluationEtudiants,
             evaluationProfs,
             fraisScolaire,
-            mainvide,
             gestionPaye,
             gestionLocaux,
             gestionMateriel,
@@ -89,11 +94,6 @@
             stages,
         },
         mounted() {
-            var elems = this.$el.querySelectorAll(".tooltipped");
-            M.Tooltip.init(elems);
-
-            var fbtn = document.querySelectorAll('.fixed-action-btn');
-            M.FloatingActionButton.init(fbtn);
 
             //Juste une ligne d'essaye
             ipcRenderer.on('doAction', (event, arg) => {
@@ -134,7 +134,7 @@
                 if (event.target.tagName == "A") {
                     event.target.classList.add("borderYell");
                 } else {
-                    event.target.parentElement.classList.add("borderYell");
+                    event.target.classList.add("borderYell");
                 }
             },
             doAction(data) {
@@ -226,7 +226,7 @@
     .side2 {
         text-align: center;
         height: 675px;
-        width: 220px;
+        width: 250px;
         position: absolute;
         z-index: 1;
         top: 30px;
@@ -250,8 +250,8 @@
     .maincontent {
         transition: margin-left .5s;
         position: relative;
-        width:1096px;
-        left: 270px;
+        width: 1066px;
+        left: 280px;
         padding: 10px;
         height: 700px;
         align-content: center;
