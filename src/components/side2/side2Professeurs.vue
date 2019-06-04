@@ -1,49 +1,52 @@
 <template>
-    <ul class="center-align">
-        <li @click="clickside2({side2: 'annuaireProfs',data: 'P01'},$event)" ref="P01" class="waves-effect waves-teal">Annuaire des Professeurs</li>
-        <li @click="clickside2({side2: 'evaluationProfs',data: 'P02'},$event)" ref="P02" class="waves-effect waves-teal">Evaluation des Professeurs</li>
-    </ul>
+    <div>
+        <v-btn flat @click="clickside2({side2: 'annuaireProfs',data: 'P01'},$event)" ref="P01"
+            class="waves-effect waves-teal">Annuaire des Professeurs</v-btn>
+        <v-btn flat @click="clickside2({side2: 'evaluationProfs',data: 'P02'},$event)" ref="P02"
+            class="waves-effect waves-teal">Evaluation des Professeurs</v-btn>
+    </div>
 </template>
 <script>
     export default {
         name: 'side2professeurs',
-        data : function(){
-            return{
-                ancienRef : 'P01'
+        data: function () {
+            return {
+                ancienRef: 'P01'
             }
         },
-        mounted(){
+        mounted() {
             // this.$refs['P01'].classList.add("BackgroundGris");
         },
         methods: {
-           clickside2(data, event) {
-                this.makeBackgroundGris(event,data.data);
+            clickside2(data, event) {
+                this.makeBackgroundGris(event, data.data);
                 this.$emit('setmaincontent', data.side2);
             },
-            makeBackgroundGris(event,data) {
-                
-                    this.$refs[this.ancienRef].classList.remove("BackgroundGris");
-                    this.$refs[data].classList.add("BackgroundGris");
-                    this.ancienRef = data;
-                
-                
+            makeBackgroundGris(event, data) {
+
+                this.$refs[this.ancienRef].classList.remove("BackgroundGris");
+                this.$refs[data].classList.add("BackgroundGris");
+                this.ancienRef = data;
+
+
             }
         }
     }
 </script>
 <style scoped>
-    ul {
+    div {
         text-transform: uppercase;
         color: white;
         width: 100%;
     }
 
-    ul li.waves-effect {
+    v-btn {
         padding: 8px;
         width: 100%;
     }
-    .BackgroundGris{
+
+    .BackgroundGris {
         background-color: rgb(214, 232, 238);
-        color:#02457A;
+        color: #02457A;
     }
 </style>

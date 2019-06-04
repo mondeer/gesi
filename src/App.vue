@@ -2,37 +2,47 @@
     <v-app>
         <div class="page-container">
             <v-toolbar height="30px">
-                <v-toolbar-side-icon></v-toolbar-side-icon>
-                <v-toolbar-title></v-toolbar-title>
-                <v-spacer></v-spacer>
+                <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
+                <!-- <v-toolbar-title></v-toolbar-title> -->
+                <v-spacer> </v-spacer>
                 <v-toolbar-items class="hidden-sm-and-down">
                     <v-btn flat small @click="doAction('minimize')">
-                        <v-icon>minimize</v-icon>
+                        <v-icon>remove</v-icon>
                     </v-btn>
                     <v-btn flat small @click="doAction('maximize')">
-                        <v-icon>maximize</v-icon>
+                        <v-icon>web_asset</v-icon>
                     </v-btn>
                     <v-btn flat small color="error" @click="doAction('close')">
                         <v-icon>clear</v-icon>
                     </v-btn>
                 </v-toolbar-items>
             </v-toolbar>
-            <div class="side1 valign-wrappr" id="side1" >
-                <v-container fill-height>
-                    <v-btn flat block ref="etudiant"
-                        @click="setContentSide2({side2: 'side2etudiants',data: 'etudiant'},$event)">Epa</v-btn>
-                    <v-btn flat block ref="professeurs"
-                        @click="setContentSide2({side2: 'side2professeurs',data: 'professeurs'},$event)">Epa</v-btn>
-                    <v-btn flat block ref="cours" @click="setContentSide2({side2: 'side2cours',data: 'cours'},$event)">
-                        Epa</v-btn>
-                    <v-btn flat block ref="gestion"
-                        @click="setContentSide2({side2: 'side2gestion',data: 'gestion'},$event)">Epa</v-btn>
-                </v-container>
+            <div class="side1" id="side1" >
+                <v-layout column align-center justify-start>
+                    <v-btn flat color="white" block ref="etudiant"
+                        @click="setContentSide2({side2: 'side2etudiants',data: 'etudiant'},$event)">
+                        <v-icon>school</v-icon>
+                    </v-btn>
+                    <v-btn flat color="white" block ref="professeur"
+                        @click="setContentSide2({side2: 'side2professeurs',data: 'professeurs'},$event)">
+                        <v-icon>people</v-icon>
+                    </v-btn>
+                    <v-btn flat color="white" block ref="cours"
+                        @click="setContentSide2({side2: 'side2cours',data: 'cours'},$event)">
+                        <v-icon>library_books</v-icon>
+                    </v-btn>
+                    <v-btn flat color="white" block ref="gestion"
+                        @click="setContentSide2({side2: 'side2gestion',data: 'gestion'},$event)">
+                        <v-icon>person</v-icon>
+                    </v-btn>
+                </v-layout>
             </div>
-            <div class="side2 valign-wrapper" id="side2">
-                <keep-alive>
-                    <component v-bind:is="getContentSide2()" @setmaincontent="setMainContent"></component>
-                </keep-alive>
+            <div class="side2" id="side2">
+                <v-layout column align-center justify-start>
+                    <keep-alive>
+                        <component v-bind:is="getContentSide2()" @setmaincontent="setMainContent"></component>
+                    </keep-alive>
+                </v-layout>
             </div>
             <div class="maincontent" id="maincontent">
                 <keep-alive>
@@ -131,11 +141,7 @@
                     this.ancienRef = data;
                 }
 
-                if (event.target.tagName == "A") {
-                    event.target.classList.add("borderYell");
-                } else {
-                    event.target.classList.add("borderYell");
-                }
+                event.target.classList.add("borderYell");
             },
             doAction(data) {
                 ipcRenderer.send("doAction", data);
@@ -145,6 +151,10 @@
 </script>
 
 <style lang="css" scoped>
+    .v-btn {
+        min-width: 45px;
+    }
+
     .page-container {
         max-height: 728px;
         overflow-y: hidden;
@@ -157,9 +167,10 @@
 
     .footer {
         position: absolute;
-        top: 705px;
+        top: 708px;
+        width: 100%;
         left: 0;
-        height: 23px;
+        height: 20px;
         background-color: rgb(51, 143, 219);
     }
 
@@ -191,12 +202,12 @@
     }
 
     #side1 {
-        height: 675px;
+        height: 678px;
         width: 50px;
         position: absolute;
         z-index: 1;
         top: 30px;
-        left: 0;
+        /* left: 0; */
         text-align: center;
         align-content: center;
         background-color: #001B48;
@@ -225,7 +236,7 @@
 
     .side2 {
         text-align: center;
-        height: 675px;
+        height: 678px;
         width: 250px;
         position: absolute;
         z-index: 1;
@@ -251,9 +262,9 @@
         transition: margin-left .5s;
         position: relative;
         width: 1066px;
-        left: 280px;
+        left: 300px;
         padding: 10px;
-        height: 700px;
+        height: 678px;
         align-content: center;
         background-color: #D6E8EE;
     }

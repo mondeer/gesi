@@ -1,48 +1,52 @@
 <template>
-    <ul class="center-align">
-        <li @click="clickside2({side2: 'annuaireCours',data: 'C01'},$event)" ref="C01" class="waves-effect">Annuaire des Cours</li>
-        <li @click="clickside2({side2: 'emploiTemps',data: 'C02'},$event)" ref="C02" class="waves-effect">Emploi du temps</li>
-        <li @click="clickside2({side2: 'evaluationEtudiants',data: 'C03'},$event)" ref="C03" class="waves-effect ">Evaluation des Etudiants</li>
-    </ul>
+    <div>
+        <v-btn flat @click="clickside2({side2: 'annuaireCours',data: 'C01'},$event)" ref="C01" class="waves-effect">Annuaire
+            des Cours</v-btn>
+        <v-btn flat @click="clickside2({side2: 'emploiTemps',data: 'C02'},$event)" ref="C02" class="waves-effect">Emploi du
+            temps</v-btn>
+        <v-btn flat @click="clickside2({side2: 'evaluationEtudiants',data: 'C03'},$event)" ref="C03" class="waves-effect ">
+            Evaluation des Etudiants</v-btn>
+    </div>
 </template>
 <script>
     export default {
         name: 'side2cours',
-        data : function(){
-            return{
-                ancienRef : "C01"
+        data: function () {
+            return {
+                ancienRef: "C01"
             }
         },
-        mounted(){
+        mounted() {
             // this.$refs['C01'].classList.add("BackgroundGris");
         },
         methods: {
             clickside2(data, event) {
-                this.makeBackgroundGris(event,data.data);
+                this.makeBackgroundGris(event, data.data);
                 this.$emit('setmaincontent', data.side2);
             },
-            makeBackgroundGris(event,data) {
-                    this.$refs[this.ancienRef].classList.remove("BackgroundGris");
-                    this.$refs[data].classList.add("BackgroundGris");
-                    this.ancienRef = data;
+            makeBackgroundGris(event, data) {
+                this.$refs[this.ancienRef].classList.remove("BackgroundGris");
+                this.$refs[data].classList.add("BackgroundGris");
+                this.ancienRef = data;
             }
 
         }
     }
 </script>
 <style scoped>
-    ul {
+    div {
         text-transform: uppercase;
         color: white;
         width: 100%;
     }
 
-    ul li.waves-effect {
+    div v-btn.waves-effect {
         padding: 8px;
         width: 100%;
     }
-    .BackgroundGris{
+
+    .BackgroundGris {
         background-color: rgb(214, 232, 238);
-        color:#02457A;
+        color: #02457A;
     }
 </style>
