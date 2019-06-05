@@ -1,14 +1,13 @@
 <template>
     <div>
-        <v-btn flat @click="clickside2({side2: 'annuaire',data: 'E01'},$event)" ref="E01" class="waves-effect waves-teal">
+        <v-btn flat block @click="clickside2({side2: 'annuaire',data: 'E01'},$event)" ref="E01">
             Annuaire des Etudiants</v-btn>
-        <v-btn flat @click="clickside2({side2: 'inscriptionForm',data: 'E02'},$event)" ref="E02"
-            class="waves-effect waves-teal">Inscription</v-btn>
-        <v-btn flat @click="clickside2({side2: 'presences',data: 'E03'},$event)" ref="E03" class="waves-effect waves-teal ">
+        <v-btn flat block @click="clickside2({side2: 'inscriptionForm',data: 'E02'},$event)" ref="E02">Inscription</v-btn>
+        <v-btn flat block @click="clickside2({side2: 'presences',data: 'E03'},$event)" ref="E03">
             Présence des Etudiants</v-btn>
-        <v-btn flat @click="clickside2({side2: 'parcours',data: 'E04'},$event)" ref="E04" class="waves-effect waves-teal ">
+        <v-btn flat block @click="clickside2({side2: 'parcours',data: 'E04'},$event)" ref="E04">
             Parcours Scolaire</v-btn>
-        <v-btn flat @click="clickside2({side2: 'stages',data: 'E05'},$event)" ref="E05" class="waves-effect waves-teal ">
+        <v-btn flat block @click="clickside2({side2: 'stages',data: 'E05'},$event)" ref="E05">
             Gestion des stages</v-btn>
 
     </div>
@@ -22,7 +21,7 @@
             }
         },
         mounted() {
-            // this.$refs['E01'].classList.add("BackgroundGris");
+            this.$refs['E01'].classList.add("BackgroundGris");
         },
         methods: {
             clickside2(data, event) {
@@ -53,7 +52,7 @@
         width: 100%;
     }
 
-    div v-btn.waves-effect {
+    v-btn {
         padding: 8px;
         width: 100%;
     }

@@ -1,17 +1,11 @@
 <template>
     <div>
-        <v-btn @click="clickside2({side2: 'fraisScolaire',data: 'G01'},$event)" ref="G01"
-            class="waves-effect waves-teal ">Frais de scolarité</v-btn>
-        <v-btn @click="clickside2({side2: 'gestionLocaux',data: 'G02'},$event)" ref="G02"
-            class="waves-effect waves-teal ">Gestion des Locaux</v-btn>
-        <v-btn @click="clickside2({side2: 'gestionMateriel',data: 'G03'},$event)" ref="G03"
-            class="waves-effect waves-teal">Gestion du Materiel</v-btn>
-        <v-btn @click="clickside2({side2: 'gestionPaye',data: 'G04'},$event)" ref="G04"
-            class="waves-effect waves-teal">Gestion de la Paye</v-btn>
-        <v-btn @click="clickside2({side2: 'gestionBibliotheque',data: 'G05'},$event)" ref="G05"
-            class="waves-effect waves-teal">Gestion Bibliotheque</v-btn>
-        <v-btn @click="clickside2({side2: 'gestionDepenses',data: 'G06'},$event)" ref="G06"
-            class="waves-effect waves-teal">Gestion des Dépenses</v-btn>
+        <v-btn flat block @click="clickside2({side2: 'fraisScolaire',data: 'G01'},$event)" ref="G01">Frais de scolarité</v-btn>
+        <v-btn flat block @click="clickside2({side2: 'gestionLocaux',data: 'G02'},$event)" ref="G02">Gestion des Locaux</v-btn>
+        <v-btn flat block @click="clickside2({side2: 'gestionMateriel',data: 'G03'},$event)" ref="G03">Gestion du Materiel</v-btn>
+        <v-btn flat block @click="clickside2({side2: 'gestionPaye',data: 'G04'},$event)" ref="G04">Gestion de la Paye</v-btn>
+        <v-btn flat block @click="clickside2({side2: 'gestionBibliotheque',data: 'G05'},$event)" ref="G05">GestionBibliotheque</v-btn>
+        <v-btn flat block @click="clickside2({side2: 'gestionDepenses',data: 'G06'},$event)" ref="G06">Gestion des Dépenses</v-btn>
     </div>
 </template>
 <script>
@@ -23,7 +17,7 @@
             }
         },
         mounted() {
-            // this.$refs['G01'].classList.add("BackgroundGris");
+            this.$refs['G01'].classList.add("BackgroundGris");
         },
         methods: {
             clickside2(data, event) {
@@ -45,7 +39,7 @@
         width: 100%;
     }
 
-    div v-btn.waves-effect {
+    v-btn {
         padding: 8px;
         width: 100%;
     }

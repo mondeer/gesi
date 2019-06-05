@@ -1,10 +1,10 @@
 <template>
     <div>
-        <v-btn flat @click="clickside2({side2: 'annuaireCours',data: 'C01'},$event)" ref="C01" class="waves-effect">Annuaire
+        <v-btn flat block @click="clickside2({side2: 'annuaireCours',data: 'C01'},$event)" ref="C01">Annuaire
             des Cours</v-btn>
-        <v-btn flat @click="clickside2({side2: 'emploiTemps',data: 'C02'},$event)" ref="C02" class="waves-effect">Emploi du
+        <v-btn flat block @click="clickside2({side2: 'emploiTemps',data: 'C02'},$event)" ref="C02">Emploi du
             temps</v-btn>
-        <v-btn flat @click="clickside2({side2: 'evaluationEtudiants',data: 'C03'},$event)" ref="C03" class="waves-effect ">
+        <v-btn flat block @click="clickside2({side2: 'evaluationEtudiants',data: 'C03'},$event)" ref="C03">
             Evaluation des Etudiants</v-btn>
     </div>
 </template>
@@ -17,7 +17,7 @@
             }
         },
         mounted() {
-            // this.$refs['C01'].classList.add("BackgroundGris");
+            this.$refs['C01'].classList.add("BackgroundGris");
         },
         methods: {
             clickside2(data, event) {
@@ -40,7 +40,7 @@
         width: 100%;
     }
 
-    div v-btn.waves-effect {
+    v-btn {
         padding: 8px;
         width: 100%;
     }

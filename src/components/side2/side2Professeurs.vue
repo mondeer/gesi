@@ -1,9 +1,9 @@
 <template>
     <div>
-        <v-btn flat @click="clickside2({side2: 'annuaireProfs',data: 'P01'},$event)" ref="P01"
-            class="waves-effect waves-teal">Annuaire des Professeurs</v-btn>
-        <v-btn flat @click="clickside2({side2: 'evaluationProfs',data: 'P02'},$event)" ref="P02"
-            class="waves-effect waves-teal">Evaluation des Professeurs</v-btn>
+        <v-btn flat block @click="clickside2({side2: 'annuaireProfs',data: 'P01'},$event)" ref="P01"
+            >Annuaire des Professeurs</v-btn>
+        <v-btn flat block @click="clickside2({side2: 'evaluationProfs',data: 'P02'},$event)" ref="P02"
+            >Evaluation des Professeurs</v-btn>
     </div>
 </template>
 <script>
@@ -15,7 +15,7 @@
             }
         },
         mounted() {
-            // this.$refs['P01'].classList.add("BackgroundGris");
+            this.$refs['P01'].classList.add("BackgroundGris");
         },
         methods: {
             clickside2(data, event) {

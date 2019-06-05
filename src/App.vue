@@ -104,7 +104,6 @@
             stages,
         },
         mounted() {
-
             //Juste une ligne d'essaye
             ipcRenderer.on('doAction', (event, arg) => {
                 console.log("Render Process: " + arg);
@@ -244,7 +243,7 @@
         left: 50px;
         background-color: #02457A;
         color: yellow;
-        overflow-x: hidden;
+        /* overflow-x: hidden; */
         transition: 0.5s;
     }
 
