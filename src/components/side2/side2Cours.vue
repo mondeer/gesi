@@ -17,7 +17,7 @@
             }
         },
         mounted() {
-            this.$refs['C01'].classList.add("BackgroundGris");
+            this.$refs['C01'].$el.classList.add("BackgroundGris");
         },
         methods: {
             clickside2(data, event) {
@@ -25,8 +25,8 @@
                 this.$emit('setmaincontent', data.side2);
             },
             makeBackgroundGris(event, data) {
-                this.$refs[this.ancienRef].classList.remove("BackgroundGris");
-                this.$refs[data].classList.add("BackgroundGris");
+                this.$refs[this.ancienRef].$el.classList.remove("BackgroundGris");
+                this.$refs[data].$el.classList.add("BackgroundGris");
                 this.ancienRef = data;
             }
 

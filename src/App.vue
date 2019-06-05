@@ -23,7 +23,7 @@
                         @click="setContentSide2({side2: 'side2etudiants',data: 'etudiant'},$event)">
                         <v-icon>school</v-icon>
                     </v-btn>
-                    <v-btn flat color="white" block ref="professeur"
+                    <v-btn flat color="white" block ref="professeurs"
                         @click="setContentSide2({side2: 'side2professeurs',data: 'professeurs'},$event)">
                         <v-icon>people</v-icon>
                     </v-btn>
@@ -37,10 +37,10 @@
                     </v-btn>
                 </v-layout>
             </div>
-            <div class="side2" id="side2">
+            <div class="side2" id="side2" color="white">
                 <v-layout column align-center justify-start>
                     <keep-alive>
-                        <component v-bind:is="getContentSide2()" @setmaincontent="setMainContent"></component>
+                        <component  v-bind:is="getContentSide2()" @setmaincontent="setMainContent"></component>
                     </keep-alive>
                 </v-layout>
             </div>
@@ -109,7 +109,7 @@
                 console.log("Render Process: " + arg);
             });
             // permet de mettre au debut le border en yellow
-            this.$refs['etudiant'].classList.add("borderYell");
+            this.$refs['etudiant'].$el.classList.add("borderYell");
         },
         data: function () {
             return {
@@ -134,13 +134,14 @@
                 this.makeBorderleftYellow(event, data.data);
             },
             makeBorderleftYellow(event, data) {
+                console.log(this.$refs[data].$el);
                 if (this.ancienRef != data) {
-                    this.$refs[this.ancienRef].classList.remove("borderYell");
-                    this.$refs[data].classList.add("borderYell");
+                    this.$refs[this.ancienRef].$el.classList.remove("borderYell");
+                    this.$refs[data].$el.classList.add("borderYell");
                     this.ancienRef = data;
                 }
 
-                event.target.classList.add("borderYell");
+                // event.target.classList.add("borderYell");
             },
             doAction(data) {
                 ipcRenderer.send("doAction", data);
